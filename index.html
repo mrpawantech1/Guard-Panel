@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guard Panel — Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body class="login-body">
+
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-logo">🛡️</div>
+            <h1 class="login-title">Guard Panel</h1>
+            <p class="login-subtitle">Sign in to continue</p>
+
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required>
+                </div>
+
+                <div class="form-check">
+                    <input type="checkbox" id="rememberMe" checked>
+                    <label for="rememberMe">Keep me signed in</label>
+                </div>
+
+                <button type="submit" id="loginBtn" class="btn-primary">
+                    <span id="loginBtnText">Sign In</span>
+                </button>
+
+                <p id="loginError" class="login-error"></p>
+            </form>
+
+            <p class="login-footer">Personal use only</p>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+    <!-- App Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
