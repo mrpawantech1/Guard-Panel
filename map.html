@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guard Panel — Live Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/map.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body class="map-body">
+
+    <!-- ========== HEADER ========== -->
+    <header class="app-header map-header">
+        <div class="header-left">
+            <button id="backBtn" class="icon-btn" title="Back">←</button>
+            <h1 class="app-name">Live Map</h1>
+        </div>
+        <div class="header-right">
+            <button id="refreshBtn" class="icon-btn" title="Refresh">🔄</button>
+            <button id="locateBtn" class="icon-btn" title="Center">🎯</button>
+        </div>
+    </header>
+
+    <!-- ========== MAP ========== -->
+    <div id="map"></div>
+
+    <!-- ========== TOP STATUS BAR ========== -->
+    <div class="top-status-bar" id="topStatusBar">
+        <span class="status-device-name" id="topDeviceName">Device</span>
+        <span class="status-dot" id="topStatusDot"></span>
+    </div>
+
+    <!-- ========== BOTTOM SHEET ========== -->
+    <div class="bottom-sheet" id="bottomSheet">
+        <div class="sheet-handle"></div>
+
+        <div class="sheet-content">
+            <!-- Header -->
+            <div class="sheet-header">
+                <div>
+                    <div class="sheet-device-name" id="sheetDeviceName">Device</div>
+                    <div class="sheet-device-status" id="sheetDeviceStatus">—</div>
+                </div>
+                <button class="sheet-close" id="sheetClose">✕</button>
+            </div>
+
+            <!-- Current Location Info -->
+            <div class="loc-info">
+                <div class="loc-row">
+                    <span class="loc-label">📍 Coordinates</span>
+                    <span class="loc-value" id="currentLoc">—</span>
+                </div>
+                <div class="loc-row">
+                    <span class="loc-label">🕐 Updated</span>
+                    <span class="loc-value" id="lastUpdate">—</span>
+                </div>
+                <div class="loc-row">
+                    <span class="loc-label">📏 Accuracy</span>
+                    <span class="loc-value" id="accuracyInfo">—</span>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="sheet-actions">
+                <button class="sheet-btn" id="goToDeviceBtn">
+                    <span class="sheet-btn-icon">🎯</span>
+                    <span>Center</span>
+                </button>
+                <button class="sheet-btn" id="addGeofenceBtn">
+                    <span class="sheet-btn-icon">➕</span>
+                    <span>Geofence</span>
+                </button>
+                <button class="sheet-btn" id="showTrailBtn">
+                    <span class="sheet-btn-icon">🛤️</span>
+                    <span>Trail</span>
+                </button>
+                <button class="sheet-btn" id="refreshLocBtn">
+                    <span class="sheet-btn-icon">📍</span>
+                    <span>Refresh</span>
+                </button>
+            </div>
+
+            <!-- Google Maps + Copy Row -->
+            <div class="ext-actions">
+                <a href="#" id="openGoogleMapsBtn" target="_blank" class="ext-btn google-btn" style="pointer-events:none;opacity:0.5;">
+                    🗺️ Open in Google Maps
+                </a>
+                <button class="ext-btn copy-btn" id="copyCoordsBtn">
+                    📋 Copy
+                </button>
+            </div>
+
+            <!-- Geofence List -->
+            <div class="geofence-section">
+                <div class="geofence-header">
+                    <span>🔔 Geofences</span>
+                    <span class="geofence-count" id="geofenceCount">0</span>
+                </div>
+                <div id="geofenceList" class="geofence-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== GEOFENCE MODAL ========== -->
+    <div class="modal-overlay hidden" id="geofenceModal">
+        <div class="modal">
+            <h3 class="modal-title">➕ Add Geofence</h3>
+
+            <div class="modal-form">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="fenceName" placeholder="Home, Office..." value="Zone">
+                </div>
+                <div class="form-group">
+                    <label>Radius (meters)</label>
+                    <input type="number" id="fenceRadius" value="200" min="50" max="5000">
+                </div>
+                <div class="form-group">
+                    <label>Alert On</label>
+                    <select id="fenceAlertOn">
+                        <option value="both">Enter + Exit</option>
+                        <option value="enter">Enter only</option>
+                        <option value="exit">Exit only</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Location</label>
+                    <div class="coord-display" id="fenceCoords">Map pe click karke set karo</div>
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-secondary" id="fenceCancel">Cancel</button>
+                <button class="btn-primary" id="fenceSave">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+    <!-- Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/geofence.js"></script>
+    <script src="js/map.js"></script>
+</body>
+</html>
