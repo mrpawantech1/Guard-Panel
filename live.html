@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guard Panel — Live Stream</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body class="dashboard-body">
+
+    <header class="app-header">
+        <div class="header-left">
+            <button id="backBtn" class="icon-btn">←</button>
+            <h1 class="app-name">Live Stream</h1>
+        </div>
+        <div class="header-right">
+            <span id="liveStatus" class="live-status-badge">⏸ Idle</span>
+        </div>
+    </header>
+
+    <main class="app-main">
+
+        <!-- Live Camera -->
+        <section class="section">
+            <h2 class="section-title">
+                <span>📹 Live Camera</span>
+                <span class="live-time" id="camLastUpdate">—</span>
+            </h2>
+
+            <div class="live-cam-container" id="liveCamContainer">
+                <div class="live-cam-placeholder" id="camPlaceholder">
+                    <div class="live-placeholder-icon">🎥</div>
+                    <div class="live-placeholder-text">Camera stream active nahi hai</div>
+                    <div class="live-placeholder-sub">Neeche se start karo</div>
+                </div>
+                <img id="liveCamImg" class="live-cam-img hidden" alt="Live camera frame">
+            </div>
+
+            <div class="live-controls">
+                <button class="live-btn primary" id="startCamBtn">
+                    🎥 Start Camera
+                </button>
+                <button class="live-btn danger" id="stopCamBtn" disabled>
+                    ⏹ Stop Camera
+                </button>
+            </div>
+        </section>
+
+        <!-- Live Audio -->
+        <section class="section">
+            <h2 class="section-title">
+                <span>🎙️ Live Audio</span>
+                <span class="live-time" id="micLastUpdate">—</span>
+            </h2>
+
+            <div class="live-audio-container">
+                <div class="audio-wave" id="audioWave">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="live-audio-status" id="liveAudioStatus">Idle</div>
+            </div>
+
+            <div class="live-controls">
+                <button class="live-btn primary" id="startMicBtn">
+                    🎙️ Start Mic
+                </button>
+                <button class="live-btn danger" id="stopMicBtn" disabled>
+                    ⏹ Stop Mic
+                </button>
+            </div>
+        </section>
+
+        <!-- Combined Controls -->
+        <section class="section">
+            <h2 class="section-title">⚡ Combined</h2>
+            <div class="live-controls-row">
+                <button class="live-btn primary" id="startBothBtn">
+                    ▶️ Start Both
+                </button>
+                <button class="live-btn danger" id="stopAllBtn">
+                    ⏹ Stop All
+                </button>
+            </div>
+        </section>
+
+        <!-- Recent Frames -->
+        <section class="section">
+            <h2 class="section-title">📸 Recent Frames</h2>
+            <div class="recent-frames" id="recentFrames">
+                <div class="gallery-empty">Koi frame nahi</div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/telegram.js"></script>
+    <script src="js/live.js"></script>
+</body>
+</html>
