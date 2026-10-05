@@ -18,10 +18,10 @@ const firebaseConfig = {
 
 const TELEGRAM_CONFIG = {
     // BotFather se mila token — EXACT paste karo
-    botToken: "7845XXXXX:AAH_YOUR_REAL_TOKEN_HERE",
+    botToken: "8701042265:AAFOrTlh1olcDxEA005KSdxt3vu953lRpas",
 
     // userinfobot se mila Chat ID (number, quotes ke andar)
-    chatId: "987654321"
+    chatId: "8606290013"
 };
 
 // ============================================
