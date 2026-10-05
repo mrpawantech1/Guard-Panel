@@ -1,6 +1,5 @@
 // ============================================
 // FIREBASE CONFIG
-// Ye values google-services.json se lo
 // ============================================
 
 const firebaseConfig = {
@@ -13,11 +12,28 @@ const firebaseConfig = {
     appId: "1:71081143323:android:8af955325aa254794d9cbe"
 };
 
-// Initialize Firebase (global)
+// ============================================
+// ⭐ TELEGRAM CONFIG — YAHAN APNI VALUES DAALO
+// ============================================
+
+const TELEGRAM_CONFIG = {
+    // BotFather se mila token — EXACT paste karo
+    botToken: "7845XXXXX:AAH_YOUR_REAL_TOKEN_HERE",
+
+    // userinfobot se mila Chat ID (number, quotes ke andar)
+    chatId: "987654321"
+};
+
+// ============================================
+// INITIALIZE
+// ============================================
+
 firebase.initializeApp(firebaseConfig);
 
-// Global references
+// Global references (baaki scripts use karti hain)
 window.db = firebase.database();
 window.firebaseReady = true;
+window.TELEGRAM = TELEGRAM_CONFIG;
 
 console.log('[Firebase] Initialized:', firebaseConfig.projectId);
+console.log('[Telegram] Bot configured:', TELEGRAM_CONFIG.botToken !== "7845XXXXX:AAH_YOUR_REAL_TOKEN_HERE" ? 'YES' : 'NO — please set token!');
