@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guard Panel — Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body class="dashboard-body">
+
+    <!-- ========== HEADER ========== -->
+    <header class="app-header">
+        <div class="header-left">
+            <span class="logo">🛡️</span>
+            <h1 class="app-name">Guard Panel</h1>
+        </div>
+        <div class="header-right">
+            <button id="refreshBtn" class="icon-btn" title="Refresh">🔄</button>
+            <button id="settingsBtn" class="icon-btn" title="Settings">⚙️</button>
+            <button id="logoutBtn" class="icon-btn" title="Logout">🚪</button>
+        </div>
+    </header>
+
+    <!-- ========== MAIN ========== -->
+    <main class="app-main">
+
+        <!-- Devices Section -->
+        <section class="section">
+            <h2 class="section-title">📱 My Devices</h2>
+            <div id="devicesList" class="devices-grid">
+                <div class="loading-state">Loading devices...</div>
+            </div>
+        </section>
+
+        <!-- Selected Device -->
+        <section id="selectedDeviceSection" class="section hidden">
+            <h2 class="section-title">
+                <span id="selectedDeviceName">Selected Device</span>
+                <span id="selectedDeviceStatus" class="status-badge"></span>
+            </h2>
+
+            <!-- Info Cards -->
+            <div class="info-grid">
+                <div class="info-card" id="cardBattery">
+                    <div class="info-icon">🔋</div>
+                    <div class="info-content">
+                        <div class="info-label">Battery</div>
+                        <div class="info-value" id="batteryValue">—</div>
+                    </div>
+                </div>
+
+                <div class="info-card" id="cardNetwork">
+                    <div class="info-icon">📶</div>
+                    <div class="info-content">
+                        <div class="info-label">Network</div>
+                        <div class="info-value" id="networkValue">—</div>
+                    </div>
+                </div>
+
+                <div class="info-card" id="cardLocation">
+                    <div class="info-icon">📍</div>
+                    <div class="info-content">
+                        <div class="info-label">Location</div>
+                        <div class="info-value" id="locationValue">—</div>
+                    </div>
+                </div>
+
+                <div class="info-card" id="cardCurrentApp">
+                    <div class="info-icon">📱</div>
+                    <div class="info-content">
+                        <div class="info-label">Current App</div>
+                        <div class="info-value" id="currentAppValue">—</div>
+                    </div>
+                </div>
+
+                <div class="info-card" id="cardProtection">
+                    <div class="info-icon">🛡️</div>
+                    <div class="info-content">
+                        <div class="info-label">Protection</div>
+                        <div class="info-value" id="protectionValue">—</div>
+                    </div>
+                </div>
+
+                <div class="info-card" id="cardLastSeen">
+                    <div class="info-icon">⏰</div>
+                    <div class="info-content">
+                        <div class="info-label">Last Seen</div>
+                        <div class="info-value" id="lastSeenValue">—</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="actions-section">
+                <h3 class="subsection-title">🎮 Quick Actions</h3>
+                <div class="actions-grid">
+                    <button class="action-btn" data-cmd="SNAP">
+                        <span class="action-icon">📸</span>
+                        <span class="action-label">Photo</span>
+                    </button>
+                    <button class="action-btn" data-cmd="REC:60">
+                        <span class="action-icon">🎤</span>
+                        <span class="action-label">Audio</span>
+                    </button>
+                    <button class="action-btn" data-cmd="VIDEO:30">
+                        <span class="action-icon">🎥</span>
+                        <span class="action-label">Video</span>
+                    </button>
+                    <button class="action-btn" data-cmd="SCREENREC:30">
+                        <span class="action-icon">📺</span>
+                        <span class="action-label">Screen</span>
+                    </button>
+                    <button class="action-btn" data-cmd="LOCATION">
+                        <span class="action-icon">📍</span>
+                        <span class="action-label">Location</span>
+                    </button>
+                    <button class="action-btn" data-cmd="BATTERY">
+                        <span class="action-icon">🔋</span>
+                        <span class="action-label">Battery</span>
+                    </button>
+                    <button class="action-btn" data-cmd="NETWORK">
+                        <span class="action-icon">📶</span>
+                        <span class="action-label">Network</span>
+                    </button>
+                    <button class="action-btn" data-cmd="PING">
+                        <span class="action-icon">🏓</span>
+                        <span class="action-label">Ping</span>
+                    </button>
+                    <button class="action-btn" data-cmd="LOCK">
+                        <span class="action-icon">🔒</span>
+                        <span class="action-label">Lock</span>
+                    </button>
+                    <button class="action-btn" data-cmd="ALARM">
+                        <span class="action-icon">🔊</span>
+                        <span class="action-label">Alarm</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navigation to other pages -->
+            <div class="nav-section">
+                <h3 class="subsection-title">🔗 More</h3>
+                <div class="nav-grid">
+                    <a href="device.html" class="nav-card">
+                        <span class="nav-icon">📊</span>
+                        <span class="nav-label">Device Detail</span>
+                    </a>
+                    <a href="map.html" class="nav-card">
+                        <span class="nav-icon">🗺️</span>
+                        <span class="nav-label">Live Map</span>
+                    </a>
+                    <a href="gallery.html" class="nav-card">
+                        <span class="nav-icon">🖼️</span>
+                        <span class="nav-label">Gallery</span>
+                    </a>
+                    <a href="live.html" class="nav-card">
+                        <span class="nav-icon">📡</span>
+                        <span class="nav-label">Live Stream</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ========== TOAST ========== -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- ========== FIREBASE SDK ========== -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+    <!-- ========== APP SCRIPTS ========== -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/devices.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+  </html>
