@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guard Panel — Gallery</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/gallery.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+</head>
+<body class="dashboard-body">
+
+    <!-- HEADER -->
+    <header class="app-header">
+        <div class="header-left">
+            <button id="backBtn" class="icon-btn">←</button>
+            <h1 class="app-name">Media Gallery</h1>
+        </div>
+        <div class="header-right">
+            <button id="clearCacheBtn" class="icon-btn" title="Clear Cache">🗑️</button>
+            <button id="refreshBtn" class="icon-btn" title="Refresh">🔄</button>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="app-main">
+
+        <!-- Tabs -->
+        <div class="tabs" id="galleryTabs">
+            <button class="tab active" data-tab="photos">
+                📸 Photos <span class="tab-count" id="countPhotos">0</span>
+            </button>
+            <button class="tab" data-tab="videos">
+                🎥 Videos <span class="tab-count" id="countVideos">0</span>
+            </button>
+            <button class="tab" data-tab="audios">
+                🎤 Audio <span class="tab-count" id="countAudios">0</span>
+            </button>
+            <button class="tab" data-tab="screens">
+                📺 Screens <span class="tab-count" id="countScreens">0</span>
+            </button>
+        </div>
+
+        <!-- Content Area -->
+        <div id="galleryContent" class="gallery-content">
+            <div class="gallery-loading">Loading...</div>
+        </div>
+
+    </main>
+
+    <!-- Media Viewer Modal -->
+    <div class="media-viewer hidden" id="mediaViewer">
+        <div class="viewer-header">
+            <span class="viewer-title" id="viewerTitle">Media</span>
+            <div class="viewer-actions">
+                <a href="#" id="viewerDownload" download class="viewer-btn" title="Download">⬇️</a>
+                <button id="viewerClose" class="viewer-btn" title="Close">✕</button>
+            </div>
+        </div>
+        <div class="viewer-content" id="viewerContent"></div>
+    </div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
+
+    <!-- Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/telegram.js"></script>
+    <script src="js/audio-player.js"></script>
+    <script src="js/gallery.js"></script>
+</body>
+</html>
