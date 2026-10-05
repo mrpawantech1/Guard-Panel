@@ -366,3 +366,235 @@
     .nav-grid { grid-template-columns: repeat(2, 1fr); }
     .app-name { font-size: 16px; }
 }
+
+/* ================= DEVICE DETAIL ================= */
+.device-header-card {
+    background: var(--card);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+.device-header-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.device-header-status {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.device-header-key {
+    font-size: 11px;
+    font-family: monospace;
+    color: var(--text-muted);
+    background: #F3F4F6;
+    padding: 6px 12px;
+    border-radius: 8px;
+    display: inline-block;
+    letter-spacing: 0.5px;
+}
+
+/* Command Grid */
+.cmd-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 8px;
+}
+
+.cmd-btn {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-family: inherit;
+    text-decoration: none;
+    color: var(--text);
+}
+
+.cmd-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+    background: #F0F4F8;
+    transform: translateY(-1px);
+}
+
+.cmd-btn:active:not(:disabled) {
+    transform: scale(0.97);
+}
+
+.cmd-btn:disabled {
+    opacity: 0.5;
+    cursor: wait;
+}
+
+.cmd-btn.danger {
+    border-color: #FEE2E2;
+    background: #FEF2F2;
+}
+
+.cmd-btn.danger:hover:not(:disabled) {
+    background: #FEE2E2;
+    border-color: var(--error);
+}
+
+.cmd-icon {
+    font-size: 22px;
+    line-height: 1;
+}
+
+.cmd-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text);
+}
+
+/* Custom Duration */
+.custom-duration-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.custom-duration-row input {
+    width: 70px;
+    padding: 8px 10px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: inherit;
+    text-align: center;
+}
+
+.cmd-btn-sm {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    color: var(--text);
+}
+
+.cmd-btn-sm:hover {
+    border-color: var(--accent);
+    background: #F0F4F8;
+}
+
+/* Schedule Form */
+.schedule-form {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.form-row label {
+    width: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    flex-shrink: 0;
+}
+
+.form-row input,
+.form-row select {
+    flex: 1;
+    padding: 8px 10px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    font-family: inherit;
+    background: #FAFAFA;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+    outline: none;
+    border-color: var(--accent);
+    background: #FFFFFF;
+}
+
+/* Schedules List */
+.schedules-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.schedule-item {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.schedule-item-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon-btn-sm {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.icon-btn-sm:hover {
+    background: #FEE2E2;
+}
+
+/* Info Card Row for Android */
+.info-card-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+}
+
+.info-card-row:last-child {
+    border-bottom: none;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .cmd-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .form-row label {
+        width: 80px;
+        font-size: 12px;
+    }
+}
